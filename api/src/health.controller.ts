@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-import { DatabaseService } from '../database/database.service';
-import { QueueService } from '../queue/queue.service';
+import { DatabaseService } from './database/database.service';
+import { QueueService } from './queue/queue.service';
 
 interface HealthResponse {
   status: string;

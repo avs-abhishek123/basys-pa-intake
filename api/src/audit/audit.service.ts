@@ -34,7 +34,7 @@ export class AuditService {
 
     const result = await this.db.query(query, params);
 
-    return result.rows.map((row) => ({
+    return result.rows.map((row: any) => ({
       auditId: row.audit_id,
       actor: row.actor,
       action: row.action,

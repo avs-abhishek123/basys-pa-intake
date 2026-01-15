@@ -2,6 +2,7 @@ import { Injectable, NotFoundException, ConflictException } from '@nestjs/common
 import { DatabaseService } from '../database/database.service';
 import { QueueService } from '../queue/queue.service';
 import { v4 as uuidv4 } from 'uuid';
+import { PoolClient } from 'pg';
 import {
   CreatePARequestDto,
   PARequestResponse,
@@ -94,7 +95,7 @@ export class PARequestsService {
     const traceId = uuidv4();
 
     // Use transaction to ensure atomicity
-    await this.db.transaction(async (client) => {
+    await this.db.transaction(async (client: PoolClient) => {
       // Insert document metadata
       await client.query(
         `INSERT INTO core.documents (document_id, request_id, status, idempotency_key)
